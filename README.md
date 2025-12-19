@@ -89,6 +89,8 @@ python manage.py runserver 8001
 
 http://127.0.0.1:8001/ - Web-интерфейс
 
+![Web interface скриншот](screenshots/site.jpg)
+
 ### 7. Проверки
 
 ```bash
