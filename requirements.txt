@@ -3,5 +3,7 @@ transformers
 datasets
 soundfile
 accelerate
+fastapi
+uvicorn
 pytest
 httpx
