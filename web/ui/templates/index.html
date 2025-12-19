@@ -1,40 +1,151 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Whisper ASR + Summarization</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background-color: #f5f1e8; /* кремовый */
+            color: #2f3e2e;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 60px auto;
+            background-color: #fbf9f4;
+            padding: 40px;
+            border-radius: 14px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        h2 {
+            margin-top: 0;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #3d4f3a; /* хаки-темный */
+            letter-spacing: 0.5px;
+        }
+
+        label {
+            font-weight: 600;
+            color: #4a5d45;
+        }
+
+        input[type="file"],
+        input[type="number"] {
+            width: 100%;
+            margin-top: 6px;
+            margin-bottom: 20px;
+            padding: 10px 12px;
+            border-radius: 8px;
+            border: 1px solid #c9c3b6;
+            background-color: #fffdf8;
+            font-size: 14px;
+        }
+
+        input[type="number"]:focus,
+        input[type="file"]:focus {
+            outline: none;
+            border-color: #7a8f5a;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background-color: #6b7f54; /* хаки */
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #5a6d47;
+        }
+
+        hr {
+            margin: 40px 0;
+            border: none;
+            border-top: 1px solid #d6d0c4;
+        }
+
+        .result-block {
+            background-color: #f0ecdf;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .result-block h3 {
+            margin-top: 0;
+            color: #3e5238;
+        }
+
+        .result-block p {
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        .error {
+            color: #8a2e2e;
+            background-color: #f4dddd;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+        }
+    </style>
 </head>
+
 <body>
 
-<h2>Whisper ASR + Summarization</h2>
+<div class="container">
 
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
+    <h2>Whisper ASR + Summarization</h2>
 
-    <label>Audio file:</label><br>
-    <input type="file" name="audio" required><br><br>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
 
-    <label>Min summary length:</label><br>
-    <input type="number" name="min_length" value="5"><br><br>
+        <label>Audio file</label>
+        <input type="file" name="audio" required>
 
-    <label>Max summary length:</label><br>
-    <input type="number" name="max_length" value="15"><br><br>
+        <label>Min summary length</label>
+        <input type="number" name="min_length" value="5">
 
-    <button type="submit">Upload</button>
-</form>
+        <label>Max summary length</label>
+        <input type="number" name="max_length" value="15">
 
-<hr>
+        <button type="submit">Process audio</button>
+    </form>
 
-{% if transcription %}
-    <h3>Transcription</h3>
-    <p>{{ transcription }}</p>
+    {% if transcription %}
+        <hr>
 
-    <h3>Summary</h3>
-    <p>{{ summary }}</p>
-{% endif %}
+        <div class="result-block">
+            <h3>Transcription</h3>
+            <p>{{ transcription }}</p>
+        </div>
 
-{% if error %}
-    <p style="color:red">{{ error }}</p>
-{% endif %}
+        <div class="result-block">
+            <h3>Summary</h3>
+            <p>{{ summary }}</p>
+        </div>
+    {% endif %}
+
+    {% if error %}
+        <hr>
+        <div class="error">
+            {{ error }}
+        </div>
+    {% endif %}
+
+</div>
 
 </body>
 </html>
