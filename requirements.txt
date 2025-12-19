@@ -5,5 +5,8 @@ soundfile
 accelerate
 fastapi
 uvicorn
+python-multipart
+django
+requests
 pytest
 httpx
