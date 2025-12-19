@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Whisper ASR + Summarization</title>
+</head>
+<body>
+
+<h2>Whisper ASR + Summarization</h2>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <label>Audio file:</label><br>
+    <input type="file" name="audio" required><br><br>
+
+    <label>Min summary length:</label><br>
+    <input type="number" name="min_length" value="5"><br><br>
+
+    <label>Max summary length:</label><br>
+    <input type="number" name="max_length" value="15"><br><br>
+
+    <button type="submit">Upload</button>
+</form>
+
+<hr>
+
+{% if transcription %}
+    <h3>Transcription</h3>
+    <p>{{ transcription }}</p>
+
+    <h3>Summary</h3>
+    <p>{{ summary }}</p>
+{% endif %}
+
+{% if error %}
+    <p style="color:red">{{ error }}</p>
+{% endif %}
+
+</body>
+</html>
