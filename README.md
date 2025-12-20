@@ -63,7 +63,7 @@ pip install -r requirements.txt
 
 Windows
 
-Скачать бинарники: https://www.gyan.dev/ffmpeg/builds/
+Скачать бинарники: https://www.gyan.dev/ffmpeg/builds/ (прямая ссылка на нужный файл: https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip)
 
 Добавить ffmpeg/bin в PATH
 
