@@ -43,6 +43,7 @@
 ```bash
 git clone https://github.com/MrAladawee/Whisper-asr-summarization.git
 cd Whisper-asr-summarization
+```
 
 ### 2. Создание виртуального окружения
 
